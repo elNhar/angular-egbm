@@ -1,0 +1,78 @@
+<div
+    *ngFor="let data of cards; let i = index"
+    [ngClass]="i % 2 === 0 ? '' : 'bg-grey'"
+>
+    <div class="container">
+        <div
+            [ngClass]="i % 2 === 0 ? 'flex-row' : 'flex-row-reverse'"
+            class="row py-5"
+        >
+            <div
+                [ngClass]="i % 2 === 0 ? 'pe-md-5' : 'ps-md-5'"
+                class="col-md-8 d-flex align-items-start justify-content-center flex-column mb-3 mb-md-0"
+            >
+                <h4 *ngIf="data.fields.subtitle" class="mb-3">
+                    {{ data.fields.subtitle }}
+                </h4>
+                <h2 *ngIf="data.fields.title" class="mb-3">
+                    {{ data.fields.title }}
+                </h2>
+                <p
+                    *ngIf="data.fields.description"
+                    class="mb-3"
+                    [innerHTML]="data.fields.description"
+                ></p>
+                <hr *ngIf="data.fields.viewMoreLink" class="mb-4" />
+                <button
+                    *ngIf="data.fields.viewMoreLink"
+                    class="rounded-btn"
+                    [routerLink]="data.fields.viewMoreLink"
+                >
+                    ver más
+                    <span class="material-icons"> north_east </span>
+                </button>
+            </div>
+            <div class="col-md-4 position-relative">
+                <picture class="image">
+                    <source
+                        [srcset]="
+                            data.fields.image.fields.file.url + '?fm=webp'
+                        "
+                        type="image/webp"
+                    />
+                    <source
+                        [srcset]="data.fields.image.fields.file.url"
+                        type="image/jpeg"
+                    />
+                    <img
+                        [width]="
+                            data.fields.image.fields.file.details.image.width
+                        "
+                        [height]="
+                            data.fields.image.fields.file.details.image.height
+                        "
+                        [src]="data.fields.image.fields.file.url"
+                        alt="Fotografía"
+                    />
+                </picture>
+                <div *ngIf="data.fields.linkedIn" class="floating-bar">
+                    <a
+                        class="btn btn-primary btn-lg btn-block"
+                        aria-label="LinkedIn"
+                        [routerLink]="data.fields.linkedIn"
+                    >
+                        <i class="fab fa-linkedin"></i>
+                        LinkedIn
+                    </a>
+                    <a
+                        class="btn btn-primary btn-lg btn-block"
+                        aria-label="Contacto"
+                    >
+                        <i class="fas fa-envelope"></i>
+                        Contacto
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

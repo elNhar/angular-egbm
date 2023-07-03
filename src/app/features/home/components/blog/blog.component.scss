@@ -1,0 +1,113 @@
+.blog {
+    h2 {
+        text-align: center;
+    }
+    &__slide {
+        h4,
+        .fecha {
+            margin-top: 15px;
+        }
+        .fecha {
+            font-size: 12px;
+            font-style: italic;
+        }
+    }
+    a {
+        text-decoration: none;
+        color: black;
+    }
+    .swiper {
+        height: 100%;
+    }
+    .swiper-slide {
+        background-color: grey;
+        height: auto !important;
+        text-align: center;
+    }
+    .card {
+        height: 100% !important;
+    }
+    .card {
+        background: #ffffff;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        .caption {
+            height: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .tags {
+            display: flex;
+            justify-content: center;
+        }
+        .tag {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 8px;
+            gap: 8px;
+            height: 25px;
+            background: #f7f8f9;
+            border-radius: 2px;
+            width: max-content;
+            font-size: 10px;
+            line-height: 13px;
+            text-align: center;
+            color: #4b5768;
+        }
+        h4 {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 23px;
+            color: #191d23;
+        }
+        .fecha {
+            font-size: 14px;
+            line-height: 18px;
+            color: #047857;
+        }
+        .content {
+            line-height: 20px;
+        }
+        .view-more-btn {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 6px 12px;
+            gap: 4px;
+            color: #ffffff;
+            font-size: 16px;
+            line-height: 20px;
+            background: #013f55;
+            border-radius: 4px;
+            color: white;
+            width: 100%;
+            margin-top: auto;
+        }
+        .pic {
+            width: 100%;
+            height: auto;
+        }
+    }
+    h4 {
+        color: #047857;
+    }
+}
+
+.swiper-pointer-events {
+    padding-bottom: 25px;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+    margin-top: 50px;
+}

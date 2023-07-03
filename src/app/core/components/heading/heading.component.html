@@ -1,0 +1,27 @@
+<div *ngIf="heading[0]" class="heading">
+    <picture class="bg">
+        <source
+            [srcset]="heading[0].fields.image.fields.file.url + '?fm=webp'"
+            type="image/webp"
+        />
+        <source
+            [srcset]="heading[0].fields.image.fields.file.url"
+            type="image/jpeg"
+        />
+        <img
+            [width]="heading[0].fields.image.fields.file.details.image.width"
+            [height]="heading[0].fields.image.fields.file.details.image.height"
+            [src]="heading[0].fields.image.fields.file.url"
+            alt="Fotografía Sur de Chile"
+        />
+    </picture>
+    <div class="container info">
+        <div class="caption">
+            <h2 class="mb-4">{{ heading[0].fields.title }}</h2>
+            <p>{{ heading[0].fields.description }}</p>
+        </div>
+        <div class="button mt-3 mt-md-0">
+            <button class="contact-btn">Contacto</button>
+        </div>
+    </div>
+</div>

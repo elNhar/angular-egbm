@@ -1,0 +1,23 @@
+:host {
+    --logo-width: 231px;
+}
+
+.logo {
+    width: var(--logo-width);
+    svg {
+        width: var(--logo-width);
+        shape-rendering: geometricPrecision;
+    }
+}
+
+.black {
+    path {
+        fill: black;
+    }
+}
+
+.white {
+    path {
+        fill: white;
+    }
+}

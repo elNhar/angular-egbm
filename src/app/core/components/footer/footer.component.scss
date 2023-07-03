@@ -1,0 +1,51 @@
+@import "../../../../styles.scss";
+
+.footer {
+    background-color: black;
+    color: white;
+    padding: 35px 0px;
+    position: relative;
+    z-index: 91;
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    &__logo {
+        margin-left: -6px;
+        width: 165px;
+        @media (min-width: 992px) {
+            margin-bottom: 0px;
+        }
+    }
+    &__lng {
+        &__link {
+        }
+    }
+    &__redes {
+        margin-bottom: 15px;
+        i {
+            margin-right: 15px;
+            font-size: 24px;
+            margin-top: 8px;
+            &:last-child {
+                margin-right: 0px;
+            }
+        }
+        @media (min-width: 992px) {
+            margin-bottom: 0px;
+        }
+    }
+    &__diseña {
+        display: flex;
+        h4 {
+            margin-right: 15px;
+        }
+        i {
+            font-size: 24px;
+        }
+    }
+    &__contactos {
+        text-align: center;
+        font-size: 14px;
+    }
+}

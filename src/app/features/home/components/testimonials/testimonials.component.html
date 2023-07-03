@@ -1,0 +1,72 @@
+<div class="testimonials container-fluid py-5">
+    <div class="row mb-5">
+        <h2>Testimonios</h2>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            <swiper [config]="swiperConfig">
+                <ng-template *ngFor="let slide of testimonials" swiperSlide>
+                    <div class="slide">
+                        <div class="col">
+                            <div
+                                class="info d-flex justify-content-center mb-3"
+                            >
+                                <div class="d-flex align-items-center">
+                                    <div
+                                        *ngIf="slide.fields.image"
+                                        class="pic me-3"
+                                    >
+                                        <picture>
+                                            <source
+                                                [srcset]="
+                                                    slide.fields.image.fields
+                                                        .file.url + '?fm=webp'
+                                                "
+                                                type="image/webp"
+                                            />
+                                            <source
+                                                [srcset]="
+                                                    slide.fields.image.fields
+                                                        .file.url
+                                                "
+                                                type="image/jpeg"
+                                            />
+                                            <img
+                                                [width]="
+                                                    slide.fields.image.fields
+                                                        .file.details.image
+                                                        .width
+                                                "
+                                                [height]="
+                                                    slide.fields.image.fields
+                                                        .file.details.image
+                                                        .height
+                                                "
+                                                [src]="
+                                                    slide.fields.image.fields
+                                                        .file.url
+                                                "
+                                                alt="Fotografía Sur de Chile"
+                                            />
+                                        </picture>
+                                    </div>
+                                    <div class="content">
+                                        <h4>
+                                            {{ slide.fields.name }}
+                                        </h4>
+                                        <p>
+                                            {{ slide.fields.typeOfClient }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="quote pb-5">
+                                {{ slide.fields.message }}
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </swiper>
+        </div>
+    </div>
+</div>

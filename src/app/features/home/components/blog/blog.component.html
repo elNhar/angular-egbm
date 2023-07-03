@@ -1,0 +1,88 @@
+<div class="blog container py-5">
+    <div class="row">
+        <div class="col-12 d-flex flex-column align-items-center">
+            <h4 class="mb-3">para la sabiduría</h4>
+            <h2 class="mb-5">Recursos</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="swiper">
+                <swiper class="pb-5" [config]="swiperConfig">
+                    <ng-template *ngFor="let slide of blog" swiperSlide>
+                        <a
+                            routerLink="/recursos/{{ slide.fields.slug }}"
+                            [queryParams]="{ id: slide.sys.id }"
+                        >
+                            <div class="card">
+                                <picture class="pic">
+                                    <source
+                                        [srcset]="
+                                            slide.fields.image.fields.file.url +
+                                            '?fm=webp'
+                                        "
+                                        type="image/webp"
+                                    />
+                                    <source
+                                        [srcset]="
+                                            slide.fields.image.fields.file.url
+                                        "
+                                        type="image/jpeg"
+                                    />
+                                    <img
+                                        [width]="
+                                            slide.fields.image.fields.file
+                                                .details.image.width
+                                        "
+                                        [height]="
+                                            slide.fields.image.fields.file
+                                                .details.image.height
+                                        "
+                                        [src]="
+                                            slide.fields.image.fields.file.url
+                                        "
+                                        alt="Blog"
+                                    />
+                                </picture>
+                                <div class="caption">
+                                    <p class="tags">
+                                        <span
+                                            class="tag"
+                                            *ngFor="
+                                                let tag of slide.fields.tags
+                                            "
+                                        >
+                                            {{ tag }}
+                                        </span>
+                                    </p>
+                                    <h4>
+                                        {{ slide.fields.title }}
+                                    </h4>
+                                    <p class="fecha">
+                                        {{ slide.sys.createdAt }}
+                                    </p>
+                                    <p
+                                        *ngIf="slide.fields.content"
+                                        class="content"
+                                        [innerHTML]="
+                                            slide.fields.content | truncate
+                                        "
+                                    ></p>
+                                    <a
+                                        class="view-more-btn"
+                                        routerLink="/recursos/{{
+                                            slide.fields.slug
+                                        }}"
+                                        [queryParams]="{ id: slide.sys.id }"
+                                    >
+                                        Ver más
+                                    </a>
+                                </div>
+                            </div>
+                        </a>
+                    </ng-template>
+                </swiper>
+            </div>
+        </div>
+    </div>
+</div>

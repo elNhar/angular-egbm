@@ -1,0 +1,11 @@
+{
+    "version": 2,
+    "public": true,
+    "name": "angular-egbm",
+    "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
+    "functions": {
+        "api/index.js": {
+            "includeFiles": "dist/angular-egbm/browser/**"
+        }
+    }
+}

@@ -1,0 +1,95 @@
+<app-heading [heading]="heading"></app-heading>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Selecciona el día de tu cita</h3>
+            <ngb-datepicker #dp
+                [ngModel]="date"
+                (navigate)="date = $event.next" 
+                (dateSelect)="showAppointments($event)">
+            </ngb-datepicker>
+        </div>
+        <div class="col-md-8">
+            <div *ngIf="loading === true" class="loader">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+            <div *ngIf="loading === false && appointmentMade === true" class="success">
+                <i class="fas fa-check"></i>
+                <h3 class="mb-3">Cita realizada con éxito</h3>
+                <p>Por favor revisa tu correo para la confirmación.</p>
+            </div>
+            <div *ngIf="dailyAppointments && loading === false && appointmentMade === false" ngbAccordion>
+                <div *ngFor="let appointmentItem of dailyAppointments" 
+                    (click)="selectAppointment(appointmentItem)"
+                    class="appointment" ngbAccordionItem [collapsed]="true"
+                    [disabled]="appointmentItem.available ? false : true">
+                    <h3 ngbAccordionHeader>
+                        <button ngbAccordionButton>
+                            <span class="hora">{{ appointmentItem.hora }}</span>
+                            <span class="state" [ngClass]="appointmentItem.available ? 'available' : 'unavailable'">{{ appointmentItem.available ? 'Disponible' : 'Ocupado' }}</span>
+                        </button>
+                    </h3>
+                    <div ngbAccordionCollapse>
+                        <div ngbAccordionBody>
+                            <ng-template>
+                                <form [formGroup]="formGroup" (ngSubmit)="onSubmit($event)">
+                                    <div class="form-group">
+                                      <label for="nombre">Nombre:</label>
+                                      <input class="form-control" type="text" id="nombre" name="nombre" formControlName="nombre" required>
+                                    </div>
+
+                                    <!-- agregar fecha nacimiento -->
+                                    <!-- agregar tiempo de sintomas -->
+                                  
+                                    <div class="form-group">
+                                      <label for="email">Email:</label>
+                                      <input class="form-control" type="email" id="email" formControlName="email" name="email" required>
+                                    </div>
+                                  
+                                    <div class="form-group">
+                                      <label for="telefono">Teléfono:</label>
+                                      <input class="form-control" type="tel" id="telefono" formControlName="telefono" name="telefono" required>
+                                    </div>
+                                  
+                                    <div class="form-group">
+                                      <label for="motivo">Motivo de consulta:</label>
+                                      <textarea class="form-control" id="motivo" formControlName="motivoDeConsulta" name="motivoDeConsulta" required></textarea>
+                                    </div>
+                                  
+                                    <div class="form-group">
+                                      <label for="sintomas">Síntomas:</label>
+                                      <textarea class="form-control" id="sintomas" formControlName="sintomas" name="sintomas" required></textarea>
+                                    </div>
+                                  
+                                    <div class="form-group">
+                                      <label for="bienestar">Nivel de bienestar (1-10): {{ formGroup.get('nivelDeBienestar')?.value }}</label>
+                                      <input type="range" id="bienestar" formControlName="nivelDeBienestar" name="nivelDeBienestar" min="1" max="10" required>
+                                    </div>
+                                  
+                                    <div class="form-group">
+                                        <input class="form-control" type="date" id="fecha" formControlName="fecha" name="fecha" [value]="appointmentItem.fecha" hidden required>
+                                        <input class="form-control" type="time" id="hora" formControlName="hora" name="hora" [value]="appointmentItem.hora" hidden required>
+                                    </div>
+                                    <re-captcha (resolved)="resolved($event)" [siteKey]="captchakey"></re-captcha>
+                                  
+                                    <div class="form-group">
+                                        <button class="submit-btn mb-3" 
+                                        type="submit" 
+                                        [disabled]="formGroup.invalid">
+                                            Reservar hora
+                                        </button>
+                                        <span *ngIf="formGroup.invalid">
+                                            *por favor completa todos los campos.
+                                        </span>
+                                    </div>
+                                    
+                                </form>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<header id="navigation" class="navigation">
+    <div class="container">
+        <div class="row">
+            <div
+                class="col-12 d-flex align-items-center justify-content-between"
+            >
+                <a routerLink="/" class="navigation__logo">
+                    <app-logo color="white"></app-logo>
+                </a>
+                <button (click)="openMenu()" class="navigation__mobile-button">
+                    <span class="material-icons"> menu </span>
+                </button>
+                <div class="navigation__desktop">
+                    <div class="navigation__desktop__bottom">
+                        <ul>
+                            <li routerLinkActive="current-menu-item">
+                                <a routerLink="/">Inicio</a>
+                            </li>
+                            <li routerLinkActive="current-menu-item">
+                                <a routerLink="/terapias-alternativas"
+                                    >Terapías alternativas</a
+                                >
+                            </li>
+                            <li routerLinkActive="current-menu-item">
+                                <a routerLink="/ingenieria">Ingeniería</a>
+                            </li>
+                            <li routerLinkActive="current-menu-item">
+                                <a routerLink="/redes-de-contacto"
+                                    >Redes de contacto</a
+                                >
+                            </li>
+                            <li routerLinkActive="current-menu-item">
+                                <a routerLink="/agenda"
+                                    >Agenda</a
+                                >
+                            </li>
+                            <li routerLinkActive="current-menu-item">
+                                <a routerLink="/recursos">Recursos</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div [class]="hideMenu === false ? 'menu-mobile' : 'menu-mobile not-visible'">
+    <button (click)="closeMenu()" class="menu-mobile__close">
+        <span class="material-icons"> close </span>
+    </button>
+    <ul class="menu">
+        <li routerLinkActive="current-menu-item">
+            <a (click)="closeMenu()" routerLink="/">Inicio</a>
+        </li>
+        <li routerLinkActive="current-menu-item">
+            <a (click)="closeMenu()" routerLink="/terapias-alternativas"
+                >Terapías alternativas</a
+            >
+        </li>
+        <li routerLinkActive="current-menu-item">
+            <a (click)="closeMenu()" routerLink="/ingenieria">Ingeniería</a>
+        </li>
+        <li routerLinkActive="current-menu-item">
+            <a (click)="closeMenu()" routerLink="/redes-de-contacto"
+                >Redes de contacto</a
+            >
+        </li>
+        <li routerLinkActive="current-menu-item">
+            <a (click)="closeMenu()" routerLink="/agenda"
+                >Agenda</a
+            >
+        </li>
+        <li routerLinkActive="current-menu-item">
+            <a (click)="closeMenu()" routerLink="/recursos">Recursos</a>
+        </li>
+    </ul>
+</div>

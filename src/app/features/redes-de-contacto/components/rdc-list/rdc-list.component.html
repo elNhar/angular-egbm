@@ -1,0 +1,106 @@
+<app-heading [heading]="heading"></app-heading>
+
+<div class="redes pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="description py-5">
+                {{ description[0].fields.description }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="filters py-5">
+                <div class="tags">
+                    <button class="rounded-btn tag me-2" (click)="getAll()">
+                        Todos
+                    </button>
+                    <button
+                        class="rounded-btn tag me-2"
+                        *ngFor="let tag of tags"
+                        (click)="getTag(tag)"
+                    >
+                        {{ tag }}
+                    </button>
+                </div>
+                <div class="search">
+                    <input
+                        class="form-control"
+                        (input)="filterSearch($event)"
+                        type="text"
+                        placeholder="Buscar..."
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="list">
+                <div
+                    *ngFor="
+                        let slide of redesLoaded
+                            | paginate
+                                : {
+                                      id: 'redes',
+                                      itemsPerPage: 6,
+                                      currentPage: p,
+                                      totalItems: redesLoaded.length
+                                  }
+                    "
+                    class="card p-3"
+                >
+                    <div class="pic">
+                        <picture class="my-3">
+                            <source
+                                [srcset]="
+                                    slide.fields.image.fields.file.url +
+                                    '?fm=webp'
+                                "
+                                type="image/webp"
+                            />
+                            <source
+                                [srcset]="slide.fields.image.fields.file.url"
+                                type="image/jpeg"
+                            />
+                            <img
+                                [width]="
+                                    slide.fields.image.fields.file.details.image
+                                        .width
+                                "
+                                [height]="
+                                    slide.fields.image.fields.file.details.image
+                                        .height
+                                "
+                                [src]="slide.fields.image.fields.file.url"
+                                alt="Blog"
+                            />
+                        </picture>
+                        <h4>
+                            {{ slide.fields.name }}
+                        </h4>
+                        <h3>
+                            {{ slide.fields.service }}
+                        </h3>
+                    </div>
+                    <div class="caption">
+                        <p
+                            *ngIf="slide.fields.description"
+                            class="content"
+                            [innerHTML]="slide.fields.description"
+                        ></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justfiy-content-center pt-5 pagination">
+            <pagination-controls
+                (pageChange)="p = $event"
+                id="recursos"
+                [maxSize]="9"
+                [directionLinks]="true"
+                [autoHide]="true"
+                [responsive]="true"
+                previousLabel=""
+                nextLabel=""
+            >
+            </pagination-controls>
+        </div>
+    </div>
+</div>

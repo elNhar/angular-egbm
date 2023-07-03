@@ -1,0 +1,48 @@
+<div class="hero">
+    <div class="container-fluid p-0">
+        <swiper [config]="swiperConfig">
+            <ng-template *ngFor="let slide of slides" swiperSlide>
+                <div class="hero__background">
+                    <picture>
+                        <source
+                            [srcset]="
+                                slide.fields.backgroundImage.fields.file.url +
+                                '?fm=webp'
+                            "
+                            type="image/webp"
+                        />
+                        <source
+                            [srcset]="
+                                slide.fields.backgroundImage.fields.file.url
+                            "
+                            type="image/jpeg"
+                        />
+                        <img
+                            [width]="
+                                slide.fields.backgroundImage.fields.file.details
+                                    .image.width
+                            "
+                            [height]="
+                                slide.fields.backgroundImage.fields.file.details
+                                    .image.height
+                            "
+                            [src]="slide.fields.backgroundImage.fields.file.url"
+                            alt="Fotografía Sur de Chile"
+                        />
+                    </picture>
+                </div>
+                <div class="container hero__caption">
+                    <div class="col-md-5 pt-5 pt-md-0">
+                        <h2 class="hero__title mb-4">
+                            {{ slide.fields.title }}
+                        </h2>
+                        <div class="hero__description mb-5">
+                            {{ slide.fields.description }}
+                        </div>
+                        <button class="contact-btn">Contáctanos</button>
+                    </div>
+                </div>
+            </ng-template>
+        </swiper>
+    </div>
+</div>

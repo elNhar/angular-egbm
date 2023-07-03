@@ -1,0 +1,66 @@
+.appointment {
+    border: none;
+    background: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid rgba(211, 211, 211, 0.5);
+    border-bottom: none;
+    &:last-of-type {
+        border-bottom: 1px solid rgba(211, 211, 211, 0.5);
+    }
+    .hora {
+        font-weight: bold;
+    }
+    .state {
+        font-style: italic;
+        color: #047857;
+        margin-left: 20px;
+        &.unavailable {
+            color: red;
+        }
+    }
+    form {
+        width: 100%;
+        .form-group {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            label {
+                margin-bottom: 10px;
+            }
+        }
+    }
+    &[disabled="true"] {
+        .accordion-button::after {
+            content: none;
+        }
+    }
+    .submit-btn[disabled] {
+        background: rgba(211, 211, 211, 0.5);
+        color: #013f55;
+    }
+}
+
+.loader, .success {
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    i {
+        font-size: 28px;
+        border: 2px solid #013f55;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 60px;
+        width: 60px;
+        color: #013f55;
+        margin-bottom: 15px;
+    }
+}

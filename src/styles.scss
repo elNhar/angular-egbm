@@ -1,0 +1,360 @@
+// Small tablets and large smartphones (landscape view)
+$screen-sm-min: 576px;
+
+// Small tablets (portrait view)
+$screen-md-min: 768px;
+
+// Tablets and small desktops
+$screen-lg-min: 992px;
+
+// Large tablets and desktops
+$screen-xl-min: 1200px;
+
+// xxLarge tablets and desktops
+$screen-xxl-min: 1400px;
+
+$rem-baseline: 16px !default;
+$rem-fallback: true !default;
+$rem-px-only: false !default;
+
+@function rem-separator($list, $separator: false) {
+    @if $separator == "comma" or $separator == "space" {
+        @return append($list, null, $separator);
+    }
+
+    @if function-exists("list-separator") == true {
+        @return list-separator($list);
+    }
+
+    // list-separator polyfill by Hugo Giraudel (https://sass-compatibility.github.io/#list_separator_function)
+    $test-list: ();
+    @each $item in $list {
+        $test-list: append($test-list, $item, space);
+    }
+
+    @return if($test-list == $list, space, comma);
+}
+
+@mixin rem-baseline($zoom: 100%) {
+    font-size: $zoom / 16px * $rem-baseline;
+}
+
+@function rem-convert($to, $values...) {
+    $result: ();
+    $separator: rem-separator($values);
+
+    @each $value in $values {
+        @if type-of($value) ==
+            "number" and
+            unit($value) ==
+            "rem" and
+            $to ==
+            "px"
+        {
+            $result: append($result, $value / 1rem * $rem-baseline, $separator);
+        } @else if
+            type-of($value) ==
+            "number" and
+            unit($value) ==
+            "px" and
+            $to ==
+            "rem"
+        {
+            $result: append($result, $value / $rem-baseline * 1rem, $separator);
+        } @else if type-of($value) == "list" {
+            $value-separator: rem-separator($value);
+            $value: rem-convert($to, $value...);
+            $value: rem-separator($value, $value-separator);
+            $result: append($result, $value, $separator);
+        } @else {
+            $result: append($result, $value, $separator);
+        }
+    }
+
+    @return if(length($result) == 1, nth($result, 1), $result);
+}
+
+@function rem($values...) {
+    @if $rem-px-only {
+        @return rem-convert(px, $values...);
+    } @else {
+        @return rem-convert(rem, $values...);
+    }
+}
+
+@mixin rem($properties, $values...) {
+    @if type-of($properties) == "map" {
+        @each $property in map-keys($properties) {
+            @include rem($property, map-get($properties, $property));
+        }
+    } @else {
+        @each $property in $properties {
+            @if $rem-fallback or $rem-px-only {
+                #{$property}: rem-convert(px, $values...);
+            }
+            @if not $rem-px-only {
+                #{$property}: rem-convert(rem, $values...);
+            }
+        }
+    }
+}
+
+@mixin hover-active {
+    &:hover {
+        .no-touch & {
+            @content;
+        }
+    }
+    &:active {
+        .touch & {
+            @content;
+        }
+    }
+}
+
+// Small devices
+@mixin sm {
+    @media (min-width: #{$screen-sm-min}) {
+        @content;
+    }
+}
+
+// Medium devices
+@mixin md {
+    @media (min-width: #{$screen-md-min}) {
+        @content;
+    }
+}
+
+// Large devices
+@mixin lg {
+    @media (min-width: #{$screen-lg-min}) {
+        @content;
+    }
+}
+
+// Extra large devices
+@mixin xl {
+    @media (min-width: #{$screen-xl-min}) {
+        @content;
+    }
+}
+
+// Extra Extra large devices
+@mixin xxl {
+    @media (min-width: #{$screen-xxl-min}) {
+        @content;
+    }
+}
+
+/* global styles */
+html,
+body {
+    height: 100%;
+}
+body,
+p {
+    font-family: "Plus Jakarta Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: "Plus Jakarta Sans";
+}
+
+h2 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    color: #013f55;
+    @include md {
+        font-size: 42px;
+        line-height: 48px;
+    }
+}
+
+h3 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: #101828;
+}
+
+h4 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+picture {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+picture img {
+    object-fit: cover;
+    height: auto;
+    width: 100%;
+}
+
+.contact-btn {
+    border: none;
+    width: 157px;
+    height: 54px;
+    background: #ffffff;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    font-family: "Plus Jakarta Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 22px;
+    color: #18181b;
+}
+
+svg,
+path,
+g {
+    shape-rendering: geometricPrecision;
+}
+
+.swiper-pagination-bullet-active {
+    background: #013f55;
+}
+
+.view-more-btn {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 12px;
+    gap: 4px;
+    font-size: 16px;
+    line-height: 20px;
+    background: #013f55;
+    border-radius: 4px;
+    color: white;
+}
+
+.rounded-btn {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 50px;
+    color: #013f55;
+    font-size: 16px;
+    padding: 6px 20px;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    transition: 0.2s ease-in-out;
+    &:focus,
+    &:hover {
+        color: #ffffff;
+        background: #013f55;
+    }
+}
+
+hr {
+    opacity: 0.1;
+    height: 1px;
+    width: 100%;
+    margin: 1rem 0px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+.ngx-pagination li {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.ngx-pagination .current {
+    background: #013f55 !important;
+    border-radius: 50% !important;
+}
+
+.btn-light.active {
+    background-color: #013f55;
+    border-radius: 50%;
+    color: white;   
+}
+
+.ngb-dp-weekday {
+    color: #013f55 !important;
+}
+
+div[ng-reflect-selected="true"] {
+    background-color: #013f55;
+    border-radius: 50%;
+    color: white;  
+}
+
+:root {
+    --bs-primary: #013f55;
+    --bs-primary-rgb: 1, 63, 85;
+    --bs-link-color: #013f55;
+    --bs-btn-color: #013f55;
+    --bs-link-hover-color: #013f55;
+    --bs-primary-text-emphasis: #013f55;
+    --bs-primary-bg-subtle: #013f5549;
+
+    // Colors
+    $primary: #013f55;
+    $secondary: #013f55;
+}
+
+.bg-primary {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-primary-rgb),var(--bs-bg-opacity))!important;
+}
+
+.accordion-button:focus {
+    z-index: 3;
+    border-color: none;
+    outline: 0;
+    box-shadow: none;
+}
+
+.submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background: #013f55;
+    border: 1px solid #013f55;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border-radius: 8px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #ffffff;
+    margin-top: 10px;
+}
+
+input[type='range'] {
+    background-color: #013f55;
+}
+
+.appointment[disabled="true"] {
+    .accordion-button::after {
+        content: none;
+    }
+}

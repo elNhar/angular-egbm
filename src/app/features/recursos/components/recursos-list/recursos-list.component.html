@@ -1,0 +1,111 @@
+<app-heading [heading]="heading"></app-heading>
+
+<div class="recursos pb-5">
+    <div class="container">
+        <div class="filters py-5">
+            <div class="tags">
+                <button class="rounded-btn tag me-2" (click)="getAll()">
+                    Todos
+                </button>
+                <button
+                    class="rounded-btn tag me-2"
+                    *ngFor="let tag of tags"
+                    (click)="getTag(tag)"
+                >
+                    {{ tag }}
+                </button>
+            </div>
+            <div class="search">
+                <input
+                    class="form-control"
+                    (input)="filterSearch($event)"
+                    type="text"
+                    placeholder="Buscar..."
+                />
+            </div>
+        </div>
+        <div class="list">
+            <a
+                *ngFor="
+                    let slide of recursosLoaded
+                        | paginate
+                            : {
+                                  id: 'recursos',
+                                  itemsPerPage: 8,
+                                  currentPage: p,
+                                  totalItems: recursosLoaded.length
+                              }
+                "
+                routerLink="/recursos/{{ slide.fields.slug }}"
+            >
+                <div class="card">
+                    <picture class="pic">
+                        <source
+                            [srcset]="
+                                slide.fields.image.fields.file.url + '?fm=webp'
+                            "
+                            type="image/webp"
+                        />
+                        <source
+                            [srcset]="slide.fields.image.fields.file.url"
+                            type="image/jpeg"
+                        />
+                        <img
+                            [width]="
+                                slide.fields.image.fields.file.details.image
+                                    .width
+                            "
+                            [height]="
+                                slide.fields.image.fields.file.details.image
+                                    .height
+                            "
+                            [src]="slide.fields.image.fields.file.url"
+                            alt="Blog"
+                        />
+                    </picture>
+                    <div class="caption">
+                        <p class="tags">
+                            <span
+                                class="tag"
+                                *ngFor="let tag of slide.fields.tags"
+                            >
+                                {{ tag }}
+                            </span>
+                        </p>
+                        <h4>
+                            {{ slide.fields.title }}
+                        </h4>
+                        <p class="fecha">
+                            {{ slide.sys.createdAt }}
+                        </p>
+                        <p
+                            *ngIf="slide.fields.content"
+                            class="content"
+                            [innerHTML]="slide.fields.content | truncate"
+                        ></p>
+                        <a
+                            class="view-more-btn"
+                            routerLink="/recursos/{{ slide.fields.slug }}"
+                            [queryParams]="{ id: slide.sys.id }"
+                        >
+                            Ver más
+                        </a>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="row d-flex justfiy-content-center pt-5 pagination">
+            <pagination-controls
+                (pageChange)="p = $event"
+                id="recursos"
+                [maxSize]="9"
+                [directionLinks]="true"
+                [autoHide]="true"
+                [responsive]="true"
+                previousLabel=""
+                nextLabel=""
+            >
+            </pagination-controls>
+        </div>
+    </div>
+</div>

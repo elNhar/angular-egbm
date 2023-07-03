@@ -1,0 +1,38 @@
+.testimonials {
+    background: rgba(217, 217, 217, 0.24);
+    h2 {
+        text-align: center;
+    }
+
+    .pic {
+        width: 104px;
+        height: 104px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    h4 {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 28px;
+        color: #047857;
+    }
+
+    p {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #667085;
+    }
+
+    .quote {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 26px;
+        text-align: center;
+        color: #101828;
+    }
+}
