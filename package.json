@@ -29,6 +29,7 @@
         "@contentful/rich-text-html-renderer": "^16.0.3",
         "@contentful/rich-text-plain-text-renderer": "^16.0.3",
         "@emailjs/browser": "^3.10.0",
+        "@flowup/contentful-rich-text-angular-renderer": "^0.6.0",
         "@ng-bootstrap/ng-bootstrap": "^14.0.1",
         "@ng-select/ng-select": "^10.0.4",
         "@nguniversal/express-engine": "^15.2.0",

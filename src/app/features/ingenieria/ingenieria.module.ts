@@ -8,6 +8,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
     declarations: [IngenieriaComponent],
-    imports: [CommonModule, IngenieriaRoutingModule, CoreModule, SharedModule],
+    imports: [CommonModule, IngenieriaRoutingModule, SharedModule, CoreModule],
 })
 export class IngenieriaModule {}

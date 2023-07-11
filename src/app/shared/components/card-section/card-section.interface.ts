@@ -6,5 +6,6 @@ export interface CardSection {
         image: any;
         viewMoreLink?: string;
         linkedIn?: string;
+        descripcion?: string;
     };
 }

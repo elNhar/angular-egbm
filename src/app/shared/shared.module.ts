@@ -7,6 +7,8 @@ import { RecaptchaComponent } from './components/recaptcha/recaptcha.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { TruncatePipe } from './utils/truncate/truncate.pipe';
 import { SafePipe } from './utils/safe/safe.service';
+import { CardSectionComponent } from './components/card-section/card-section.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -15,14 +17,16 @@ import { SafePipe } from './utils/safe/safe.service';
         RecaptchaComponent,
         TruncatePipe,
         SafePipe,
+        CardSectionComponent
     ],
-    imports: [CommonModule, RecaptchaModule],
+    imports: [CommonModule, RecaptchaModule, RouterModule],
     exports: [
         ToHtmlPipe,
         LoaderComponent,
         TruncatePipe,
         RecaptchaComponent,
         SafePipe,
+        CardSectionComponent
     ],
 })
 export class SharedModule {

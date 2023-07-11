@@ -98,9 +98,9 @@ export class HomeComponent implements OnInit {
                     blog.sys.createdAt = new Date(
                         blog.sys.createdAt
                     ).toLocaleDateString();
-                    blog.fields.content = documentToPlainTextString(
+                    /* blog.fields.content = documentToPlainTextString(
                         blog.fields.content
-                    );
+                    ); */
                 });
                 // display content
                 this.blog = recursos;
@@ -114,11 +114,11 @@ export class HomeComponent implements OnInit {
         const especialista = await this.contentfulService.getEspecialista();
         const cards = await this.contentfulService.getHomeCards();
         cards.unshift(especialista[0]);
-        cards.forEach((card) => {
+        /* cards.forEach((card) => {
             card.fields.description = documentToPlainTextString(
                 card.fields.description
             );
-        });
+        }); */
         return cards;
     }
 

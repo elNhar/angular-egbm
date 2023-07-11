@@ -18,9 +18,9 @@
                     {{ data.fields.title }}
                 </h2>
                 <p
-                    *ngIf="data.fields.description"
+                    *ngIf="data?.fields?.description || data?.fields?.descripcion"
                     class="mb-3"
-                    [innerHTML]="data.fields.description"
+                    [innerHTML]="data?.fields?.description ? (data?.fields?.description | toHtml) : (data?.fields?.descripcion | toHtml)"
                 ></p>
                 <hr *ngIf="data.fields.viewMoreLink" class="mb-4" />
                 <button

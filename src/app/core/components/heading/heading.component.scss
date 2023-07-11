@@ -23,6 +23,12 @@
             flex-direction: row;
         }
     }
+    .caption {
+        width: 100%;
+        @include md {
+            width: 80%;
+        }
+    }
     h2,
     p {
         color: white;

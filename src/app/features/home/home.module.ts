@@ -16,6 +16,6 @@ import { SharedModule } from '../../shared/shared.module';
         TestimonialsComponent,
         BlogComponent,
     ],
-    imports: [CommonModule, HomeRoutingModule, CoreModule, SharedModule],
+    imports: [CommonModule, HomeRoutingModule, SharedModule, CoreModule],
 })
 export class HomeModule {}
