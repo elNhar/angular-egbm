@@ -12,7 +12,7 @@ import { app } from 'src/app/app.constants';
 })
 export class RecursosSingleComponent implements OnInit {
     private slug: string = '';
-    singleRecurso: Entry<any>[] = [];
+    singleRecurso: any;
 
     constructor(
         private contentfulService: ContentfulService,
@@ -27,7 +27,6 @@ export class RecursosSingleComponent implements OnInit {
         this.contentfulService
             .getSingleRecurso(this.slug)
             .then((content) => {
-                console.log(content);
                 // meta
                 this.meta.addTags([
                     {
@@ -45,7 +44,7 @@ export class RecursosSingleComponent implements OnInit {
                     ).toLocaleDateString();
                 });
                 // get content
-                this.singleRecurso = content;
+                this.singleRecurso = content[0];
             })
             .catch((err) => console.error(err));
     }

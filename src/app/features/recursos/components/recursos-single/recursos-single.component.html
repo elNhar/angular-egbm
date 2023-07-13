@@ -1,31 +1,31 @@
-<div *ngIf="singleRecurso !== null" class="single-news my-5">
+<div class="single-news my-5">
     <div class="container pt-5">
         <div class="row d-flex justify-content-center my-5">
             <div class="col-md-10">
                 <h2 class="single-news__title mb-3">
-                    {{ singleRecurso[0].fields.title }}
+                    {{ singleRecurso?.fields?.title }}
                 </h2>
                 <span class="single-news__date align-items-center d-flex">
                     <span class="material-icons me-3"> date_range </span>
-                    {{ singleRecurso[0].sys.createdAt }}
+                    {{ singleRecurso?.sys.createdAt }}
                 </span>
             </div>
         </div>
         <div class="row d-flex justify-content-center">
             <div class="col-md-10">
                 <div
-                    [innerHTML]="singleRecurso[0].fields.content | toHtml"
+                    [innerHTML]="singleRecurso?.fields?.content | toHtml"
                     class="wysiwyg"
                 ></div>
                 <div
                     class="youtube-container"
-                    *ngIf="singleRecurso[0].fields.youtubeLink"
+                    *ngIf="singleRecurso?.fields?.youtubeLink"
                 >
                     <iframe
                         class="youtube"
                         width="560"
                         height="315"
-                        [src]="singleRecurso[0].fields.youtubeLink | safe"
+                        [src]="singleRecurso?.fields?.youtubeLink | safe"
                         title="YouTube video player"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -33,9 +33,9 @@
                     >
                     </iframe>
                 </div>
-                <div *ngIf="singleRecurso[0].fields.soundcloudLink">
+                <div *ngIf="singleRecurso?.fields?.soundcloudLink">
                     <iframe
-                        [src]="singleRecurso[0].fields.soundcloudLink | safe"
+                        [src]="singleRecurso?.fields?.soundcloudLink | safe"
                         width="100%"
                         height="300"
                         scrolling="no"
@@ -43,10 +43,10 @@
                         allow="autoplay"
                     ></iframe>
                 </div>
-                <div *ngIf="singleRecurso[0].fields.spotifyLink">
+                <div *ngIf="singleRecurso?.fields?.spotifyLink">
                     <iframe
                         style="border-radius: 12px"
-                        [src]="singleRecurso[0].fields.spotifyLink | safe"
+                        [src]="singleRecurso?.fields?.spotifyLink | safe"
                         width="100%"
                         height="352"
                         frameBorder="0"
