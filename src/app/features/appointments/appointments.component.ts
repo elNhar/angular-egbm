@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgbDate, NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate, NgbCalendar, NgbDateStruct, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ContentfulService } from '../../core/services/contentful-service/contentful.service';
 import { app } from 'src/app/app.constants';
 import { Meta, Title } from '@angular/platform-browser';
@@ -19,7 +19,7 @@ import { Appointment, Horas } from './appointment.interface';
 export class AppointmentsComponent implements OnInit {
     heading: Array<any> = [];
     appointment: Appointment = {} as Appointment;
-	date: { year: number; month: number };
+    date: { year: number; month: number; day: number };
     appointments: any;
     dailyAppointments: Array<Appointment> = [];
     captchakey = environment.CAPTCHA;
@@ -38,10 +38,26 @@ export class AppointmentsComponent implements OnInit {
         private title: Title,
         private calendar: NgbCalendar,
         private http: HttpClient,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private config: NgbDatepickerConfig
     ) {
-        this.appointment.fecha = this.calendar.getToday();
-        this.date = this.calendar.getToday();
+        const current = new Date();
+        config.minDate = {
+            year: current.getFullYear(), month:
+                current.getMonth() + 1, day: current.getDate() + 2
+        };
+        config.maxDate = {
+            year: current.getFullYear(), month:
+                current.getMonth() + 3, day: current.getDate()
+        };
+        this.appointment.fecha = {
+            year: current.getFullYear(), month:
+                current.getMonth() + 1, day: current.getDate() + 2
+        }
+        this.date = {
+            year: current.getFullYear(), month:
+                current.getMonth() + 1, day: current.getDate() + 2
+        }
     }
 
     ngOnInit(): void {
@@ -86,13 +102,13 @@ export class AppointmentsComponent implements OnInit {
     private fetchContent(): void {
         // get heading
         this.contentfulService
-        .getCalendarioHeading()
-        .then((heading) => {
-            this.heading = heading;
-        })
-        .catch((err) => {
-            console.error(err);
-        });
+            .getCalendarioHeading()
+            .then((heading) => {
+                this.heading = heading;
+            })
+            .catch((err) => {
+                console.error(err);
+            });
         // get sliders
         this.contentfulService
             .getCalendar()
@@ -107,7 +123,7 @@ export class AppointmentsComponent implements OnInit {
             .catch((err) => {
                 console.error(err);
             }).finally(() => {
-                this.showAppointments(this.calendar.getToday());
+                this.showAppointments(this.date);
                 this.loading = false;
             });
     }
@@ -140,7 +156,7 @@ export class AppointmentsComponent implements OnInit {
                         ...formObject,
                         token: response
                     };
-                    
+
                     emailjs.send(
                         environment.EMAILJS_SERVICE_ID,
                         environment.EMAILJS_TEMPLATE_ID,
@@ -162,9 +178,9 @@ export class AppointmentsComponent implements OnInit {
                             duration: 5000
                         })
                     })
-                    .finally(() => {
-                        this.loading = false;
-                    });
+                        .finally(() => {
+                            this.loading = false;
+                        });
                 },
                 (error) => {
                     this.loading = false;
@@ -176,7 +192,6 @@ export class AppointmentsComponent implements OnInit {
     }
 
     public showAppointments(e?: any) {
-        console.log(e);
         this.dailyAppointments = [];
         const horaValues: Horas[] = ['12:00 - 13:00', '13:00 - 14:00', '14:00 - 15:00', '15:00 - 16:00', '16:00 - 17:00', '17:00 - 18:00'];
         // create daily appointments
@@ -190,14 +205,14 @@ export class AppointmentsComponent implements OnInit {
                 hora: hora,
                 available: true
             };
-            
+
             this.dailyAppointments.push(appointment);
         });
 
         // compare and update availability
-        if(this.appointments && this.appointments.length > 0) {
+        if (this.appointments && this.appointments.length > 0) {
             this.appointments.forEach((appointment: any) => {
-                const appointmentFound = this.dailyAppointments.find((dailyAppointment: any) => 
+                const appointmentFound = this.dailyAppointments.find((dailyAppointment: any) =>
                     dailyAppointment.hora === appointment.fields.hora &&
                     dailyAppointment.fecha.year === appointment.fields.fecha.year &&
                     dailyAppointment.fecha.month === appointment.fields.fecha.month &&
@@ -212,20 +227,20 @@ export class AppointmentsComponent implements OnInit {
 
     private convertStringToNgbDate(dateString: string): NgbDate | null {
         const dateParts = dateString.split('-');
-        
+
         if (dateParts.length === 3) {
-          const year = parseInt(dateParts[0], 10);
-          const month = parseInt(dateParts[1], 10);
-          const day = parseInt(dateParts[2], 10);
-          
-          if (!isNaN(year) && !isNaN(month) && !isNaN(day)) {
-            return new NgbDate(year, month, day);
-          }
+            const year = parseInt(dateParts[0], 10);
+            const month = parseInt(dateParts[1], 10);
+            const day = parseInt(dateParts[2], 10);
+
+            if (!isNaN(year) && !isNaN(month) && !isNaN(day)) {
+                return new NgbDate(year, month, day);
+            }
         }
-        
+
         return null;
     }
-    
+
     public selectAppointment(appointment: Appointment) {
         this.selectedAppointment = appointment;
         this.formGroup.patchValue({

@@ -9,6 +9,9 @@ import { LogoComponent } from './components/logo/logo.component';
 import { RouterModule } from '@angular/router';
 import { ContactComponent } from './components/contact/contact.component';
 import { HeadingComponent } from './components/heading/heading.component';
+import { EmailService } from '../shared/services/email-service/email.service';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaComponent } from './components/recaptcha/recaptcha.component';
 
 @NgModule({
     declarations: [
@@ -17,8 +20,9 @@ import { HeadingComponent } from './components/heading/heading.component';
         LogoComponent,
         HeadingComponent,
         ContactComponent,
+        RecaptchaComponent
     ],
-    imports: [CommonModule, NgToastModule, RouterModule],
+    imports: [CommonModule, NgToastModule, RouterModule, RecaptchaModule],
     exports: [
         HeaderComponent,
         FooterComponent,
@@ -27,7 +31,8 @@ import { HeadingComponent } from './components/heading/heading.component';
         LogoComponent,
         HeadingComponent,
         ContactComponent,
+        RecaptchaComponent
     ],
-    providers: [ContentfulService],
+    providers: [ContentfulService, EmailService],
 })
 export class CoreModule {}

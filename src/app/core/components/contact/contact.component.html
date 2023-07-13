@@ -1,4 +1,4 @@
-<div id="contacto" class="contact">
+<div id="contacto" class="contact" (submit)="sendEmail($event)">
     <img
         class="bg"
         src="assets/images/contact-bg.jpg"
@@ -16,10 +16,18 @@
             <div class="col-md-6 form">
                 <h2 class="pb-3">Contacto</h2>
                 <h4 class="pb-3">Escríbenos</h4>
-                <form>
+                <div *ngIf="isLoading === true" class="loader">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+                <div *ngIf="messageSent === true" class="success">
+                    <i class="fas fa-check"></i>
+                    <h3 class="mb-3">Gracias!</h3>
+                    <p>tu consulta ha sido recibida.</p>
+                </div>
+                <form *ngIf="isLoading === false && messageSent === false">
                     <div class="form-group">
                         <label for="name">Asunto</label>
-                        <select class="form-control" formControlName="subject">
+                        <select class="form-control" formControlName="subject" id="subject" name="subject">
                             <option value="terapias alternativas">
                                 Terapias Alternativas
                             </option>
@@ -33,6 +41,8 @@
                             type="text"
                             class="form-control"
                             formControlName="name"
+                            name="name"
+                            id="name"
                         />
                     </div>
                     <div class="form-group">
@@ -41,6 +51,8 @@
                             type="email"
                             class="form-control"
                             formControlName="email"
+                            name="email"
+                            id="email"
                         />
                     </div>
                     <div class="form-group">
@@ -49,6 +61,8 @@
                             type="text"
                             class="form-control"
                             formControlName="phone"
+                            name="phone"
+                            id="phone"
                         />
                     </div>
                     <div class="form-group">
@@ -57,7 +71,12 @@
                             rows="4"
                             class="form-control text-area"
                             formControlName="message"
+                            name="message"
+                            id="message"
                         ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <app-recaptcha></app-recaptcha>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="submit-btn">Enviar</button>

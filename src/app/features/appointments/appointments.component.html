@@ -6,7 +6,7 @@
             <h3>Selecciona el día de tu cita</h3>
             <ngb-datepicker #dp
                 [ngModel]="date"
-                (navigate)="date = $event.next" 
+                
                 (dateSelect)="showAppointments($event)">
             </ngb-datepicker>
         </div>

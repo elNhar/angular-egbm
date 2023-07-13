@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ViewportScroller } from '@angular/common';
+import { Location, LocationStrategy, ViewportScroller } from '@angular/common';
 import { HostListener } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-header',
@@ -14,8 +14,10 @@ export class HeaderComponent implements OnInit {
 
     constructor(
         private scroll: ViewportScroller,
-        private router: Router
-    ) {}
+        private router: Router,
+        private route: ActivatedRoute,
+        private location: Location
+    ) { }
 
     @HostListener('window:scroll', [])
     onWindowScroll() {
@@ -23,9 +25,9 @@ export class HeaderComponent implements OnInit {
         let top = this.scroll.getScrollPosition();
         if (navigation) {
             if (top[1] < 10) {
-                //if ( this.isHomePage ){
+                if (!this.isRecurso()) {
                     navigation.classList.remove('fixed');
-                //}
+                }
             } else {
                 //if ( this.isHomePage ){
                 navigation.classList.add('fixed');
@@ -35,30 +37,22 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        /* const navigation = window.document.getElementById('navigation');
-        this.isHome();
-        if(this.isHomePage && navigation) {
-            navigation.classList.remove('fixed');
-        } */
-    }
-    
-    /* isHome(){
         const navigation = window.document.getElementById('navigation');
         this.router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
-                const urlTree = this.router.parseUrl(event.url);
-                if (!urlTree.root.children['primary'] && navigation) {
-                    navigation.classList.add('white');
-                    this.isHomePage = true;
-                } else {
-                    if(navigation) {
-                        navigation.classList.remove('white');
-                        this.isHomePage = false;
-                    }
+                // Execute your function here
+                if (this.isRecurso() && navigation) {
+                    navigation.classList.add('fixed');
+                } else if (!this.isRecurso() && navigation) {
+                    navigation.classList.remove('fixed');
                 }
             }
         });
-    } */
+    }
+
+    isRecurso(): boolean {
+        return this.location.path().includes('/recursos/');
+    }
 
     openMenu() {
         if ((this.hideMenu = false)) {

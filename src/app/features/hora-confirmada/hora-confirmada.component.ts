@@ -22,8 +22,6 @@ export class HoraConfirmadaComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       const queryParam = params['t'];
 
-      console.log(queryParam);
-
       // Optional: Validate the query parameter or perform any necessary transformations
 
       const endpoint = '/api/calendar';

@@ -20,5 +20,5 @@ import { Component } from '@angular/core';
     `,
 })
 export class AppComponent {
-    title = 'Ruta 7 Chile';
+    title = 'egbmdimensions';
 }

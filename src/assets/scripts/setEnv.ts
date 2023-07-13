@@ -45,7 +45,7 @@ const environmentFileContent = `
     EMAILJS_SERVICE_ID: '${process.env.EMAILJS_SERVICE_ID}',
     EMAILJS_TEMPLATE_ID: '${process.env.EMAILJS_TEMPLATE_ID}',
     EMAILJS_PUBLIC_KEY: '${process.env.EMAILJS_PUBLIC_KEY}',
-    EMAILJS_ADVENTURE_ID: '${process.env.EMAILJS_ADVENTURE_ID}'
+    EMAILJS_CONTACT_ID: '${process.env.EMAILJS_CONTACT_ID}'
   };
 `;
 

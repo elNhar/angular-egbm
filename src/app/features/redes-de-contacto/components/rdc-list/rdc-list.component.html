@@ -84,6 +84,30 @@
                             class="content"
                             [innerHTML]="slide.fields.description"
                         ></p>
+                        <div class="rrss">
+                            <a *ngIf="slide.fields.sitioWeb" href="https://{{ slide.fields.sitioWeb }}" target="_blank">
+                                <span class="material-icons">
+                                    public
+                                </span>
+                            </a>
+                            <a *ngIf="slide.fields.linkedIn" href="{{ slide.fields.linkedIn }}" target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a *ngIf="slide.fields.whatsapp" href="tel:{{ slide.fields.whatsapp }}" target="_blank">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a *ngIf="slide.fields.instagram" href="{{ slide.fields.instagram }}" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a *ngIf="slide.fields.facebook" href="{{ slide.fields.facebook }}" target="_blank">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a *ngIf="slide.fields.email" href="{{ slide.fields.email }}" target="_blank">
+                                <span class="material-icons">
+                                    mail
+                                </span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
