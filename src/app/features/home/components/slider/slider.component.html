@@ -1,4 +1,4 @@
-<div class="hero">
+<div *ngIf="slides" class="hero">
     <div class="container-fluid p-0">
         <swiper [config]="swiperConfig">
             <ng-template *ngFor="let slide of slides" swiperSlide>

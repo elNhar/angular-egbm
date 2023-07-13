@@ -1,10 +1,9 @@
-<app-heading [heading]="heading"></app-heading>
+<app-heading *ngIf="heading" [heading]="heading"></app-heading>
 
-<div class="redes pb-5">
+<div *ngIf="description" class="redes pb-5">
     <div class="container">
         <div class="row">
-            <div class="description py-5">
-                {{ description[0].fields.description }}
+            <div class="description py-5" [innerHTML]="description[0]?.fields.descripcion | toHtml">
             </div>
         </div>
         <div class="row">

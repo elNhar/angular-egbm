@@ -10,12 +10,12 @@ export class TestimonialsComponent {
     swiperConfig: any = {
         slidesPerView: 1,
         spaceBetween: 0,
-        loop: true,
+        loop: false,
         autoHeight: true,
         autoplay: {
             delay: 8000,
         },
-        pagination: true,
-        navigation: false,
+        pagination: { clickable: true },
+        navigation: false
     };
 }

@@ -22,7 +22,7 @@ export class RdcListComponent implements OnInit {
         private contentfulService: ContentfulService,
         private meta: Meta,
         private title: Title
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         // set meta and get content
@@ -113,8 +113,10 @@ export class RdcListComponent implements OnInit {
         } else {
             this.redesLoaded = str
                 ? this.redes.filter((red) =>
-                      red.fields.title.toLowerCase().includes(str.toLowerCase())
-                  )
+                    red.fields.name
+                        .toLowerCase()
+                        .includes(str.toLowerCase())
+                )
                 : this.redesLoaded;
         }
     }

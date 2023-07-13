@@ -108,10 +108,10 @@ export class RecursosListComponent implements OnInit {
         } else {
             this.recursosLoaded = str
                 ? this.recursos.filter((recurso) =>
-                      recurso.fields.title
-                          .toLowerCase()
-                          .includes(str.toLowerCase())
-                  )
+                        recurso.fields.title
+                            .toLowerCase()
+                            .includes(str.toLowerCase())
+                )
                 : this.recursosLoaded;
         }
     }

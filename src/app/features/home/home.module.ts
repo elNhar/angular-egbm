@@ -8,6 +8,8 @@ import { CoreModule } from '../../core/core.module';
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { SharedModule } from '../../shared/shared.module';
+import { RecursosModule } from '../recursos/recursos.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -16,6 +18,6 @@ import { SharedModule } from '../../shared/shared.module';
         TestimonialsComponent,
         BlogComponent,
     ],
-    imports: [CommonModule, HomeRoutingModule, SharedModule, CoreModule],
+    imports: [CommonModule, HomeRoutingModule, SharedModule, CoreModule, RouterModule],
 })
 export class HomeModule {}
