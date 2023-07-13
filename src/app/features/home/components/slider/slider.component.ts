@@ -15,4 +15,10 @@ export class SliderComponent {
             delay: 4000,
         },
     };
+    scrollToElement() {
+        const element = window.document.querySelector('#contacto')
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
 }
