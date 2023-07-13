@@ -227,7 +227,6 @@ export function app(): express.Express {
                 }
             });
         } catch (error) {
-            console.error('cago aca');
             console.error(error);
             res.status(500).json({ message: 'Error' });
         }
