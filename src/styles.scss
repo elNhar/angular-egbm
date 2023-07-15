@@ -152,7 +152,7 @@ html,
 body {
     height: 100%;
 }
-body,
+
 p {
     font-family: "Plus Jakarta Sans";
     font-style: normal;
@@ -370,4 +370,8 @@ input[type='range'] {
         width: 100%;
         margin: 2rem 0px;
     }
+}
+
+.content p {
+    font-size: 11px;
 }

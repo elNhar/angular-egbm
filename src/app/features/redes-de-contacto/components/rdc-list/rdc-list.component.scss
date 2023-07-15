@@ -91,6 +91,14 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            .content {
+                font-size: 11px;
+                line-height: 20px;
+                p {
+                    font-size: 11px !important;
+                    line-height: 20px;
+                }
+            }
         }
 
         .tags {
@@ -127,11 +135,6 @@
             font-size: 14px;
             line-height: 18px;
             color: #047857;
-        }
-
-        .content {
-            font-size: 12px;
-            line-height: 20px;
         }
 
         .view-more-btn {
@@ -191,6 +194,18 @@
         .rrss {
             display: flex;
             align-items: center;
+            a.mail {
+                text-decoration: none;
+                color: #013f55;
+                display: flex;
+                align-items: start;
+                margin-top: -5px;
+                margin-left: 0px;
+                font-size: 14px;
+                .material-icons {
+                    font-size: 26px;
+                }
+            }
             a .material-icons, i {
                 font-size: 22px;
                 color: #013f55;

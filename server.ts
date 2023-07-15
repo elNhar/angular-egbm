@@ -122,7 +122,7 @@ export function app(): express.Express {
     server.post('/api/confirm', (req, res) => {
         try {
             // Get the form data from the request body
-            const { nombre, fecha, hora, email, telefono, motivoDeConsulta, sintomas, nivelDeBienestar } = req.body;
+            const { nombre, fecha, hora, email, telefono, motivoDeConsulta, sintomas, nivelDeBienestar, tiempos, nacimiento } = req.body;
       
             // Generate the JWT with the form data and a 30-minute expiration
             const jwtSecret = process.env['JWTS'];
@@ -135,10 +135,12 @@ export function app(): express.Express {
                 telefono,
                 motivoDeConsulta,
                 sintomas,
-                nivelDeBienestar
+                nivelDeBienestar,
+                tiempos,
+                nacimiento
                 },
                 jwtSecret,
-                { expiresIn: '30m' }
+                { expiresIn: '15m' }
             );
       
             res.status(200).json(token);
@@ -175,7 +177,9 @@ export function app(): express.Express {
                         telefono,
                         motivoDeConsulta,
                         sintomas,
-                        nivelDeBienestar 
+                        nivelDeBienestar,
+                        tiempos,
+                        nacimiento
                     } = decoded;
     
                     // Create a Contentful client instance using the token
@@ -192,6 +196,9 @@ export function app(): express.Express {
                                 fields: {
                                     nombre: {
                                         'en-US': nombre
+                                    },
+                                    nacimiento: {
+                                        'en-US': nacimiento
                                     },
                                     fecha: {
                                         'en-US': new Date(fecha)
@@ -210,6 +217,9 @@ export function app(): express.Express {
                                     },
                                     sintomas: {
                                         'en-US': sintomas
+                                    },
+                                    tiempos: {
+                                        'en-US': tiempos
                                     },
                                     nivelDeBienestar: {
                                         'en-US': String(nivelDeBienestar)

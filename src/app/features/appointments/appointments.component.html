@@ -39,8 +39,10 @@
                                       <input class="form-control" type="text" id="nombre" name="nombre" formControlName="nombre" required>
                                     </div>
 
-                                    <!-- agregar fecha nacimiento -->
-                                    <!-- agregar tiempo de sintomas -->
+                                    <div class="form-group">
+                                        <label for="nacimiento">Fecha de nacimiento:</label>
+                                        <input class="form-control" type="date" id="nacimiento" name="nacimiento" formControlName="nacimiento" required>
+                                    </div>
                                   
                                     <div class="form-group">
                                       <label for="email">Email:</label>
@@ -60,6 +62,11 @@
                                     <div class="form-group">
                                       <label for="sintomas">Síntomas:</label>
                                       <textarea class="form-control" id="sintomas" formControlName="sintomas" name="sintomas" required></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="nombre">¿Cuanto tiempo llevas con sintomas?</label>
+                                        <input class="form-control" type="text" id="tiempos" name="tiempos" formControlName="tiempos" required>
                                     </div>
                                   
                                     <div class="form-group">

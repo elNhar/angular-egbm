@@ -30,11 +30,9 @@
                             "src/sitemap.xml"
                         ],
                         "styles": [
+                            "./node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "./node_modules/@ng-select/ng-select/themes/default.theme.css",
                             "./node_modules/swiper/swiper-bundle.min.css",
-                            "./node_modules/bootstrap/dist/css/bootstrap-reboot.min.css",
-                            "./node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
-                            "./node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "src/styles.scss"
                         ],
                         "scripts": []

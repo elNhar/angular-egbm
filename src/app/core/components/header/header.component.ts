@@ -25,8 +25,14 @@ export class HeaderComponent implements OnInit {
         let top = this.scroll.getScrollPosition();
         if (navigation) {
             if (top[1] < 10) {
-                if (!this.isRecurso()) {
+                if (!this.isRecurso() || !this.isHora()) {
                     navigation.classList.remove('fixed');
+                }
+                if(this.isRecurso()) {
+                    navigation.classList.add('fixed');
+                }
+                if(this.isHora()) {
+                    navigation.classList.add('fixed');
                 }
             } else {
                 //if ( this.isHomePage ){
@@ -41,9 +47,9 @@ export class HeaderComponent implements OnInit {
         this.router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
                 // Execute your function here
-                if (this.isRecurso() && navigation) {
+                if ((this.isRecurso() || this.isHora()) && navigation) {
                     navigation.classList.add('fixed');
-                } else if (!this.isRecurso() && navigation) {
+                } else if ((!this.isRecurso() || !this.isHora()) && navigation) {
                     navigation.classList.remove('fixed');
                 }
             }
@@ -52,6 +58,10 @@ export class HeaderComponent implements OnInit {
 
     isRecurso(): boolean {
         return this.location.path().includes('/recursos/');
+    }
+
+    isHora(): boolean {
+        return this.location.path().includes('/hora-confirmada');
     }
 
     openMenu() {

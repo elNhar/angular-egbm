@@ -74,7 +74,9 @@ export class AppointmentsComponent implements OnInit {
             nivelDeBienestar: ['', Validators.required],
             fecha: ['', Validators.required],
             hora: ['', Validators.required],
-            captcha: ['', Validators.required]
+            captcha: ['', Validators.required],
+            tiempos: ['', Validators.required],
+            nacimiento: ['', Validators.required]
         });
     }
 
@@ -254,5 +256,4 @@ export class AppointmentsComponent implements OnInit {
             captcha: captcha,
         })
     }
-
 }
