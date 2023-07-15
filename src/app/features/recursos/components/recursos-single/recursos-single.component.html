@@ -34,6 +34,23 @@
                     >
                     </iframe>
                 </div>
+                <div
+                    class="youtube-container"
+                    *ngIf="singleRecurso?.fields?.youtubeVideo"
+                >
+                    <iframe
+                        *ngFor="let video of singleRecurso?.fields?.youtubeVideo"
+                        class="youtube"
+                        width="560"
+                        height="315"
+                        [src]="video | safe"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                    >
+                    </iframe>
+                </div>
                 <div *ngIf="singleRecurso?.fields?.soundcloudLink">
                     <iframe
                         [src]="singleRecurso?.fields?.soundcloudLink | safe"
