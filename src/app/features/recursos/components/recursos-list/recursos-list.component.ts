@@ -88,21 +88,25 @@ export class RecursosListComponent implements OnInit {
 
     getAll() {
         this.recursosLoaded = this.recursos;
+        this.p = 1;
     }
 
     getTag(str: string) {
+        this.p = 1;
         return (this.recursosLoaded = this.recursos.filter((item) =>
             item.fields.tags.some((tag: any) => tag === str)
         ));
     }
 
     filterSearch(event: any): void {
+        this.p = 1;
         if (event !== null) {
             return this.applyFilter(event.target.value);
         }
     }
 
     applyFilter(str: string): void {
+        this.p = 1;
         if (str.length === 0) {
             this.recursosLoaded = this.recursos;
         } else {

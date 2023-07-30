@@ -280,7 +280,6 @@ nav {
 }
 
 .ngx-pagination li {
-    display: inline-block;
     width: 32px;
     height: 32px;
     display: inline-flex;
@@ -374,4 +373,17 @@ input[type='range'] {
 
 .content p {
     font-size: 11px;
+}
+
+.ngx-pagination.responsive {
+    padding: 0;
+    .small-screen {
+        display: contents !important;
+    }
+}
+
+@include md {
+    .ngx-pagination.responsive .small-screen {
+        display: none !important;
+    }
 }

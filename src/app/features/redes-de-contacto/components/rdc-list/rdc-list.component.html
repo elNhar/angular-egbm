@@ -93,6 +93,14 @@
                             <a *ngIf="slide.fields.facebook" href="{{ slide.fields.facebook }}" target="_blank">
                                 <i class="fab fa-facebook"></i>
                             </a>
+                            <a *ngIf="slide.fields.email" href="mailto:{{ slide.fields.email }}" target="_blank" class="mail d-none d-md-flex">
+                                <span class="material-icons">
+                                    mail
+                                </span>
+                                {{ slide.fields.email }}
+                            </a>
+                        </div>
+                        <div class="rrss d-md-none mt-2">
                             <a *ngIf="slide.fields.email" href="mailto:{{ slide.fields.email }}" target="_blank" class="mail">
                                 <span class="material-icons">
                                     mail
