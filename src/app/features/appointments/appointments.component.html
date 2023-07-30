@@ -53,6 +53,14 @@
                                       <label for="telefono">Teléfono:</label>
                                       <input class="form-control" type="tel" id="telefono" formControlName="telefono" name="telefono" required>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="modalidad">Modalidad:</label>
+                                        <div class="inp">
+                                            <input type="radio" id="modalidad" formControlName="modalidad" name="modalidad" value="presencial" required style="margin-right: 10px"> Presencial
+                                            <input type="radio" id="modalidad" formControlName="modalidad" name="modalidad" value="online" required style="margin-left: 20px; margin-right: 10px;"> Online
+                                        </div>
+                                    </div>
                                   
                                     <div class="form-group">
                                       <label for="motivo">Motivo de consulta:</label>

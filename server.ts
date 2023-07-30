@@ -175,6 +175,7 @@ export function app(): express.Express {
                         hora,
                         email,
                         telefono,
+                        modalidad,
                         motivoDeConsulta,
                         sintomas,
                         nivelDeBienestar,
@@ -211,6 +212,9 @@ export function app(): express.Express {
                                     },
                                     telefono: {
                                         'en-US': telefono
+                                    },
+                                    modalidad: {
+                                        'en-US': modalidad
                                     },
                                     motivoDeConsulta: {
                                         'en-US': motivoDeConsulta

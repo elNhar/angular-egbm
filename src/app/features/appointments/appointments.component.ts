@@ -69,6 +69,7 @@ export class AppointmentsComponent implements OnInit {
             nombre: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
             telefono: ['', Validators.required],
+            modalidad: ['', Validators.required],
             motivoDeConsulta: ['', Validators.required],
             sintomas: ['', Validators.required],
             nivelDeBienestar: ['', Validators.required],
@@ -195,7 +196,7 @@ export class AppointmentsComponent implements OnInit {
 
     public showAppointments(e?: any) {
         this.dailyAppointments = [];
-        const horaValues: Horas[] = ['12:00 - 13:00', '13:00 - 14:00', '14:00 - 15:00', '15:00 - 16:00', '16:00 - 17:00', '17:00 - 18:00'];
+        const horaValues: Horas[] = ['18:00 - 19:00', '19:00 - 20:00', '20:00 - 21:00'];
         // create daily appointments
         horaValues.forEach((hora: Horas) => {
             const appointment: Appointment = {
