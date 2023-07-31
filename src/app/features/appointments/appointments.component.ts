@@ -41,23 +41,17 @@ export class AppointmentsComponent implements OnInit {
         private formBuilder: FormBuilder,
         private config: NgbDatepickerConfig
     ) {
-        const current = new Date();
-        config.minDate = {
-            year: current.getFullYear(), month:
-                current.getMonth() + 1, day: current.getDate() + 2
-        };
-        config.maxDate = {
-            year: current.getFullYear(), month:
-                current.getMonth() + 3, day: current.getDate()
-        };
+        const today = new Date();
+        const maxDate = new Date(today.getFullYear(), today.getMonth() + 2, today.getDate());
+        const currentDate = new Date(today.setDate(today.getDate() + 2));
+        const minDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
         this.appointment.fecha = {
-            year: current.getFullYear(), month:
-                current.getMonth() + 1, day: current.getDate() + 2
-        }
-        this.date = {
-            year: current.getFullYear(), month:
-                current.getMonth() + 1, day: current.getDate() + 2
-        }
+            year: currentDate.getFullYear(), month:
+            currentDate.getMonth(), day: currentDate.getDate()
+        };
+        this.date = { year: currentDate.getFullYear(), month: currentDate.getMonth() + 1, day: currentDate.getDate() };
+        this.config.minDate = { year: minDate.getFullYear(), month: minDate.getMonth() + 1, day: minDate.getDate() };
+        this.config.maxDate = { year: maxDate.getFullYear(), month: maxDate.getMonth() + 2, day: maxDate.getDate() };
     }
 
     ngOnInit(): void {

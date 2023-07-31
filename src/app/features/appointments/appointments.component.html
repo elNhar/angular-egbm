@@ -6,7 +6,7 @@
             <h3>Selecciona el día de tu cita</h3>
             <ngb-datepicker #dp
                 [ngModel]="date"
-                
+                (navigate)="date.year = $event.next.year; date.month = $event.next.month" 
                 (dateSelect)="showAppointments($event)">
             </ngb-datepicker>
         </div>
@@ -58,7 +58,7 @@
                                         <label for="modalidad">Modalidad:</label>
                                         <div class="inp">
                                             <input type="radio" id="modalidad" formControlName="modalidad" name="modalidad" value="presencial" required style="margin-right: 10px"> Presencial
-                                            <input type="radio" id="modalidad" formControlName="modalidad" name="modalidad" value="online" required style="margin-left: 20px; margin-right: 10px;"> Online
+                                            <input type="radio" id="modalidad" formControlName="modalidad" name="modalidad" value="online" required style="margin-left: 20px; margin-right: 10px;"> Remoto
                                         </div>
                                     </div>
                                   
